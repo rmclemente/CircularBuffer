@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "circular.buffer", "src\circular.buffer\circular.buffer.csproj", "{724D876D-62D9-45A0-9153-474BD1DD85FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "circular.buffer.tests", "tests\circular.buffer.tests\circular.buffer.tests.csproj", "{8A4A755C-0FA4-49F6-A297-7872F25CEC05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{724D876D-62D9-45A0-9153-474BD1DD85FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{724D876D-62D9-45A0-9153-474BD1DD85FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{724D876D-62D9-45A0-9153-474BD1DD85FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{724D876D-62D9-45A0-9153-474BD1DD85FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A4A755C-0FA4-49F6-A297-7872F25CEC05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A4A755C-0FA4-49F6-A297-7872F25CEC05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A4A755C-0FA4-49F6-A297-7872F25CEC05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A4A755C-0FA4-49F6-A297-7872F25CEC05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
