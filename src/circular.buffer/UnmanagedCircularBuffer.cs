@@ -1,17 +1,19 @@
 namespace circular.buffer;
 
 /// <summary>
-/// Circular Buffer that contains unmanaged resources like database connections,
-/// tcp connections, etc.
+/// Buffer that contains unmanaged resources that need to be disposed
+/// like file handles, network sockets, etc.
 /// </summary>
-/// <typeparam name="T"></typeparam>
-public class UnmanagedCircularBuffer<T> : CircularBuffer<T>, IDisposable where T : IDisposable
+/// <typeparam name="TObject"></typeparam>
+public class UnmanagedCircularBuffer<TObject> : CircularBuffer<TObject>, IDisposable where TObject : IDisposable
 {
     private bool disposedValue;
 
-    public UnmanagedCircularBuffer(int capacity, Func<T> itemFactory) : base(capacity, itemFactory)
+    private UnmanagedCircularBuffer(int capacity, Func<TObject> itemFactory, Func<TObject, bool>? itemInvalidation) : base(capacity, itemFactory, itemInvalidation)
     {
     }
+
+    public static UnmanagedCircularBuffer<TObject> Create(int capacity, Func<TObject> itemFactory, Func<TObject, bool>? itemInvalidation) => new(capacity, itemFactory, itemInvalidation);
 
     protected virtual void Dispose(bool disposing)
     {

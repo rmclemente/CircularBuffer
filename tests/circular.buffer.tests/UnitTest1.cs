@@ -9,7 +9,7 @@ public class UnitTest1
     {
         //arrange
         //act
-        var circularBuffer = new CircularBuffer<UnmanagedClass>(6, UnmanagedClass.Create);
+        var circularBuffer = CircularBuffer<ManagedClass>.Create(6, ManagedClass.Create);
 
         //assert
         Assert.Equal(6, circularBuffer.Capacity);
@@ -22,7 +22,7 @@ public class UnitTest1
     public void Test2()
     {
         //arrange
-        var circularBuffer = new CircularBuffer<UnmanagedClass>(6, UnmanagedClass.Create);
+        var circularBuffer = CircularBuffer<ManagedClass>.Create(6, ManagedClass.Create);
 
         //act
         var unmanagedClass = circularBuffer.Acquire();
@@ -38,15 +38,15 @@ public class UnitTest1
     public void Test3()
     {
         //arrange
-        var circularBuffer = new CircularBuffer<UnmanagedClass>(6, UnmanagedClass.Create);
+        var circularBuffer = CircularBuffer<ManagedClass>.Create(6, ManagedClass.Create);
 
         //act
-        UnmanagedClass unmanagedClass1 = circularBuffer.Acquire();
+        ManagedClass unmanagedClass1 = circularBuffer.Acquire();
         var unmanagedClass2 = circularBuffer.Acquire();
-        UnmanagedClass unmanagedClass3 = circularBuffer.Acquire();
-        UnmanagedClass unmanagedClass4 = circularBuffer.Acquire();
-        UnmanagedClass unmanagedClass5 = circularBuffer.Acquire();
-        UnmanagedClass unmanagedClass6 = circularBuffer.Acquire();
+        ManagedClass unmanagedClass3 = circularBuffer.Acquire();
+        ManagedClass unmanagedClass4 = circularBuffer.Acquire();
+        ManagedClass unmanagedClass5 = circularBuffer.Acquire();
+        ManagedClass unmanagedClass6 = circularBuffer.Acquire();
 
         //assert
         Assert.Equal(6, circularBuffer.Capacity);
@@ -59,12 +59,12 @@ public class UnitTest1
     public void Test4()
     {
         //arrange
-        var circularBuffer = new CircularBuffer<UnmanagedClass>(6, UnmanagedClass.Create);
+        var circularBuffer = CircularBuffer<ManagedClass>.Create(6, ManagedClass.Create);
         int capacityBefore;
         int availableBefore;
         bool isFullBefore;
         bool isEmptyBefore;
-        
+
         //act
         using (var item = circularBuffer.Acquire())
         {
@@ -84,6 +84,29 @@ public class UnitTest1
         Assert.Equal(5, availableBefore);
         Assert.False(isFullBefore);
     }
+
+    [Fact]
+    public void Test5()
+    {
+        //arrange
+        var circularBuffer = UnmanagedCircularBuffer<UnmanagedClass>.Create(1, UnmanagedClass.Create, p => p.Id != Guid.Empty);
+        UnmanagedClass unmanagedClass;
+        Guid unmanagedClassId;
+
+        //act
+        using (var bufferItem = circularBuffer.Acquire())
+        {
+            unmanagedClass = bufferItem;
+            unmanagedClassId = bufferItem.Item.Id;
+        }
+
+        //assert
+        using (var bufferItem = circularBuffer.Acquire())
+        {
+            Assert.NotEqual(unmanagedClassId, bufferItem.Item.Id);
+        }
+        Assert.Equal(Guid.Empty, unmanagedClass.Id);
+    }
 }
 
 public class UnmanagedClass : IDisposable
@@ -95,4 +118,11 @@ public class UnmanagedClass : IDisposable
     {
         Id = Guid.Empty;
     }
+}
+
+public class ManagedClass
+{
+    public Guid Id { get; private set; } = Guid.NewGuid();
+
+    public static ManagedClass Create() => new();
 }
