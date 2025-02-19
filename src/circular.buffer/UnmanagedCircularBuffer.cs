@@ -9,11 +9,9 @@ public class UnmanagedCircularBuffer<TObject> : CircularBuffer<TObject>, IDispos
 {
     private bool disposedValue;
 
-    private UnmanagedCircularBuffer(int capacity, Func<TObject> itemFactory, Func<TObject, bool>? itemInvalidation) : base(capacity, itemFactory, itemInvalidation)
+    public UnmanagedCircularBuffer(int capacity, Func<TObject> itemFactory, Func<TObject, bool>? itemInvalidation) : base(capacity, itemFactory, itemInvalidation)
     {
     }
-
-    public static UnmanagedCircularBuffer<TObject> Create(int capacity, Func<TObject> itemFactory, Func<TObject, bool>? itemInvalidation) => new(capacity, itemFactory, itemInvalidation);
 
     protected virtual void Dispose(bool disposing)
     {

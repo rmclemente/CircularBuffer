@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "circular.buffer", "src\circ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "circular.buffer.tests", "tests\circular.buffer.tests\circular.buffer.tests.csproj", "{8A4A755C-0FA4-49F6-A297-7872F25CEC05}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "circular.buffer.benchmark", "benchmark\circular.buffer.benchmark\circular.buffer.benchmark.csproj", "{2543F18A-D443-4360-A7F9-E80E3B1F4D64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "circular.buffer.parallel.benchmark", "benchmark\circular.buffer.parallel.benchmark\circular.buffer.parallel.benchmark.csproj", "{0FAD5732-EE64-4151-A857-150609F20840}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{8A4A755C-0FA4-49F6-A297-7872F25CEC05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A4A755C-0FA4-49F6-A297-7872F25CEC05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A4A755C-0FA4-49F6-A297-7872F25CEC05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2543F18A-D443-4360-A7F9-E80E3B1F4D64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2543F18A-D443-4360-A7F9-E80E3B1F4D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2543F18A-D443-4360-A7F9-E80E3B1F4D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2543F18A-D443-4360-A7F9-E80E3B1F4D64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FAD5732-EE64-4151-A857-150609F20840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FAD5732-EE64-4151-A857-150609F20840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FAD5732-EE64-4151-A857-150609F20840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FAD5732-EE64-4151-A857-150609F20840}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

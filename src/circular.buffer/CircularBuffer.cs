@@ -38,7 +38,7 @@ public class CircularBuffer<TObject>
     /// </summary>
     public int Capacity { get; private set; }
 
-    private CircularBuffer(int capacity, Func<TObject> itemFactory) : this(capacity, itemFactory, null)
+    public CircularBuffer(int capacity, Func<TObject> itemFactory) : this(capacity, itemFactory, null)
     {
     }
 
@@ -56,19 +56,14 @@ public class CircularBuffer<TObject>
     /// </summary>
     private void Initialize()
     {
+        if (Capacity <= 0)
+            throw new ArgumentException($"Capacity must be greater than zero. Value: '{Capacity}'", nameof(Capacity));
+
+        if (_itemFactory is null)
+            throw new ArgumentNullException(nameof(_itemFactory), "ItemFactory can not be null.");
+
         while (IsFull == false)
             _buffer.Enqueue(_itemFactory());
-    }
-
-    public static CircularBuffer<TObject> Create(int capacity, Func<TObject> itemFactory) 
-    {
-        if (capacity <= 0)
-            throw new ArgumentException($"Capacity must be greater than zero. Value: '{capacity}'", nameof(capacity));
-
-        if(itemFactory is null)
-            throw new ArgumentNullException(nameof(itemFactory), "ItemFactory can not be null.");
-
-        return new(capacity, itemFactory);
     }
 
     /// <summary>
@@ -143,7 +138,7 @@ public class CircularBuffer<TObject>
     /// </summary>
     /// <param name="Item"></param>
     /// <param name="Buffer"></param>
-    public record BufferItem(TObject Item, CircularBuffer<TObject> Buffer) : IDisposable
+    public readonly struct BufferItem(TObject Item, CircularBuffer<TObject> Buffer) : IDisposable
     {
         private readonly CircularBuffer<TObject> _buffer = Buffer;
         public TObject Item { get; private init; } = Item;

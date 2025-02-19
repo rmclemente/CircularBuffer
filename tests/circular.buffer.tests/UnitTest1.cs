@@ -9,7 +9,7 @@ public class UnitTest1
     {
         //arrange
         //act
-        var circularBuffer = CircularBuffer<ManagedClass>.Create(6, ManagedClass.Create);
+        var circularBuffer = new CircularBuffer<ManagedClass>(6, ManagedClass.Create);
 
         //assert
         Assert.Equal(6, circularBuffer.Capacity);
@@ -22,7 +22,7 @@ public class UnitTest1
     public void Test2()
     {
         //arrange
-        var circularBuffer = CircularBuffer<ManagedClass>.Create(6, ManagedClass.Create);
+        var circularBuffer = new CircularBuffer<ManagedClass>(6, ManagedClass.Create);
 
         //act
         var unmanagedClass = circularBuffer.Acquire();
@@ -38,7 +38,7 @@ public class UnitTest1
     public void Test3()
     {
         //arrange
-        var circularBuffer = CircularBuffer<ManagedClass>.Create(6, ManagedClass.Create);
+        var circularBuffer = new CircularBuffer<ManagedClass>(6, ManagedClass.Create);
 
         //act
         ManagedClass unmanagedClass1 = circularBuffer.Acquire();
@@ -59,7 +59,7 @@ public class UnitTest1
     public void Test4()
     {
         //arrange
-        var circularBuffer = CircularBuffer<ManagedClass>.Create(6, ManagedClass.Create);
+        var circularBuffer = new CircularBuffer<ManagedClass>(6, ManagedClass.Create);
         int capacityBefore;
         int availableBefore;
         bool isFullBefore;
@@ -89,7 +89,7 @@ public class UnitTest1
     public void Test5()
     {
         //arrange
-        var circularBuffer = UnmanagedCircularBuffer<UnmanagedClass>.Create(1, UnmanagedClass.Create, p => p.Id != Guid.Empty);
+        var circularBuffer = new UnmanagedCircularBuffer<UnmanagedClass>(1, UnmanagedClass.Create, p => p.Id != Guid.Empty);
         UnmanagedClass unmanagedClass;
         Guid unmanagedClassId;
 
